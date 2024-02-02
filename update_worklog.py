@@ -13,7 +13,6 @@ start_date = datetime.now()
 end_date = datetime.now()
 
 exclude_dates = [
-    '2024-02-02',
     '2024-02-08',
     '2024-02-09',
     '2024-02-15',
@@ -109,31 +108,10 @@ while current_date <= end_date:
     if current_date.strftime("%Y-%m-%d") not in exclude_dates:
         date_str = current_date.strftime("%Y-%m-%d")
 
-        note_input = "Daily Status Call and Project Meetings"
-        task_id = tasks['Meetings']
-        minute = 60 # Total minutes spent on above task
-        print(f"{date_str}, {note_input}, {authorization_token}, {task_id}, {minute}")
-        # status_code, response_json = save_task_time(date_str, note_input, authorization_token, task_id, minute)
-        # print(f"For {date_str}: Status Code: {status_code}, Response JSON: {response_json}")
-    
-        note_input = "Project Management"
-        task_id = tasks['Project Management']
-        minute = 60 # Total minutes spent on above task
-        print(f"{date_str}, {note_input}, {authorization_token}, {task_id}, {minute}")
-        # status_code, response_json = save_task_time(date_str, note_input, authorization_token, task_id, minute)
-        # print(f"For {date_str}: Status Code: {status_code}, Response JSON: {response_json}")
-
-        note_input = "NOC Team Support"
+        note_input = "Infra Monitoring and NOC Team Support"
         task_id = tasks['Support']
-        minute = 360 # Total minutes spent on above task
-        print(f"{date_str}, {note_input}, {authorization_token}, {task_id}, {minute}")
-        # status_code, response_json = save_task_time(date_str, note_input, authorization_token, task_id, minute)
-        # print(f"For {date_str}: Status Code: {status_code}, Response JSON: {response_json}")
-
-        # note_input = "Production Deployment Support"
-        # task_id = tasks['Deployment']
-        # minute = 360 # Total minutes spent on above task
-        # status_code, response_json = save_task_time(date_str, note_input, authorization_token, task_id, minute)
-        # print(f"For {date_str}: Status Code: {status_code}, Response JSON: {response_json}")
+        minute = 480 # Total minutes spent on above task
+        status_code, response_json = save_task_time(date_str, note_input, authorization_token, task_id, minute)
+        print(f"For {date_str}: Status Code: {status_code}, Response JSON: {response_json}")
 
     current_date += timedelta(days=1)
