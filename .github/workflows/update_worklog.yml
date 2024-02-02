@@ -4,11 +4,12 @@ name: update_worklog
 on:
     workflow_dispatch:
     schedule:
-        - cron: '30 13 * * *'
+        - cron: '30 10 * * *' # 10:30 UTC = 17:30 IST
 
 jobs:
     update_worklog:
         runs-on: ubuntu-latest
+        if: github.base_ref == 'refs/heads/main'
         steps:
             - name: Checkout the repo
               uses: actions/checkout@v4
@@ -26,6 +27,7 @@ jobs:
                   KRONOS_PASSWORD: ${{ secrets.KRONOS_PASSWORD }}
 
             - name: PingMe On Pushbullet
+              if: github.repository_owner == 'rajasimmans'
               uses: kha7iq/pingme-action@v1
               with:
                 service: pushbullet
